@@ -6,10 +6,10 @@ The processor is follows a single-cycle execution model, where each instruction 
 
 ---
 ## Instruction Formats
-| Format  | 3-bits | 3-bits | 3-bits | 3-bits       | 4-bits |
+| Format  | 4-bits | 3-bits | 3-bits | 3-bits       | 3-bits |
 |---------|--------|--------|--------|--------------|--------|
 | I-type  | `op`   | `rs`   | `rt`   | `immediate`  | —      |
-| J-type  | `op`   | —      | —      | `address`     | —      |
+| J-type  | `op`   | —      |         `address`              |
 | R-type  | `op`   | `rs`   | `rt`   | `rd` / `—`    | `func` |
 
 ## ✅ Supported Instruction Set
