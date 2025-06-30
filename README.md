@@ -66,3 +66,6 @@ The processor is follows a single-cycle execution model, where each instruction 
 ```
 ## Datapath Diagram
 ![Datapath Diagram](./docs/datapath.png)
+
+## Control Signals
+![Control Signals](./docs/signals.png)
