@@ -43,9 +43,9 @@ The processor is follows a single-cycle execution model, where each instruction 
 
 ### 🔸 `lea rs, rt, K`
 ```mips
-# R[rt] = K * LSB10(R[rt]) + R[rs]
+# R[rt] = K * LSB9(R[rt]) + R[rs]
 # Description:
-# Multiply the least significant 10 bits of register R[rt] by constant K,
+# Multiply the least significant 9 bits of register R[rt] by constant(immediate) K,
 # then add the result to the content of R[rs] and store the final value in R[rt].
 ```
 
@@ -59,10 +59,10 @@ The processor is follows a single-cycle execution model, where each instruction 
 ### 🔸 `pcm (rt), offset(rs)`
 ```mips
 # PC = Memory[R[rt]]
-# Memory[R[rs] + offset] = PC + 4
+# Memory[R[rs] + offset] = PC + 1
 # Description:
 # Load the PC with the value stored in memory at address R[rt],
-# then write PC + 4 to memory at address R[rs] + offset.
+# then write PC + 1 to memory at address R[rs] + offset.
 ```
 ## Datapath Diagram
 ![Datapath Diagram](./docs/datapath.png)
