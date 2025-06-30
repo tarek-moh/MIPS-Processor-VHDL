@@ -8,8 +8,8 @@ The processor is follows a single-cycle execution model, where each instruction 
 ## Instruction Formats
 | Format  | 4-bits | 3-bits | 3-bits | 3-bits       | 3-bits       | 3-bits |
 |---------|--------|--------|--------|--------------|--------------|--------|
-| I-type  | `op`   | `rs`   | `rt`   |               `immediate`            |
-| J-type  | `op`   | —      |                    `address`                  |
+| I-type  | `op`   | `rs`   | `rt`   |               `immediate (9-bits)`   |
+| J-type  | `op`   | —      |                    `address (12-bits)`        |
 | R-type  | `op`   | `rs`   | `rt`   | `rd`         |  —           | `func` |
 
 ## ✅ Supported Instruction Set
@@ -20,7 +20,7 @@ The processor is follows a single-cycle execution model, where each instruction 
 | `add`       | `R[rd] = R[rs] + R[rt]`            |
 | `sub`       | `R[rd] = R[rs] - R[rt]`            |
 | `and`       | `R[rd] = R[rs] & R[rt]`            |
-| `or`        | `R[rd] = R[rs] | R[rt]`            |
+| `or`        | `R[rd] = R[rs] \| R[rt]`            |
 | `addi`      | `R[rt] = R[rs] + Imm`              |
 | `andi`      | `R[rt] = R[rs] & Imm`              |
 | `slt`       | `R[rd] = (R[rs] < R[rt]) ? 1 : 0`   |
