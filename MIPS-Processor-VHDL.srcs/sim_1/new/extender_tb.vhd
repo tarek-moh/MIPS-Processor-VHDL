@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 07/04/2025 03:47:27 PM
+-- Create Date: 07/06/2025 09:49:20 PM
 -- Design Name: 
--- Module Name: extender - rtl
+-- Module Name: extender_tb - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,24 +31,31 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity extender is
-    Port ( input : in STD_LOGIC_VECTOR (8 downto 0);
-           output : out STD_LOGIC_VECTOR (31 downto 0);
-           EXTD : in STD_LOGIC);
-end extender;
+entity extender_tb is
+--  Port ( );
+end extender_tb;
 
-architecture rtl of extender is
-
+architecture Behavioral of extender_tb is
+    signal extend_in  : std_logic_vector(8 downto 0);
+    signal extend_out : std_logic_vector(31 downto 0);
+    signal EXTD      : std_logic := '0';
 begin
     
-    process(input, EXTD) is
+    uut : entity work.extender(rtl)
+    port map(
+        input => extend_in,
+        output => extend_out,
+        EXTD => EXTD
+    );
+    
+    process is
     begin
-        if EXTD = '0' then
-            output <= std_logic_vector(resize(unsigned(input), output'length));
-        elsif EXTD = '1' then
-            output <= std_logic_vector(resize(signed(input), output'length));
-        else 
-            output <= (others => 'X');
-        end if;
+        extend_in <= "101010000";
+        wait for 100 ns;
+        EXTD <= '1';
+        wait for 100 ns;
+        EXTD <= 'Z';
+        wait;
     end process;
-end rtl;
+
+end Behavioral;
