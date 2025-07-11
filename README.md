@@ -69,3 +69,6 @@ The processor is follows a single-cycle execution model, where each instruction 
 
 ## Control Signals
 ![Control Signals](./docs/signals.png)
+
+## instruction code
+![instruction code](./docs/instruction_code.png)
