@@ -52,7 +52,7 @@ begin
         if MEMREAD = '1' then
             data <= memory(to_integer(unsigned(read_address(5 downto 0))));
         else
-            data <= (others => 'Z');  -- or '0', depending on your design
+            data <= (others => 'Z');  
         end if;
     end process;
 

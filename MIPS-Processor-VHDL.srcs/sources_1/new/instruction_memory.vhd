@@ -44,9 +44,17 @@ architecture rtl of instruction_memory is
     
     -- Hardcoded memory contents
     constant ROM : memory_array := (
-        -- Format: "opcode() rs() rt() rd/imm()"
-        0 => "0000000000000000001", -- fake encoding: add
-        -- Remaining instructions are NOPs
+        0 =>  "0000001010011000000", -- add  r1, r2, r3
+        1 =>  "0000100101110000001", -- sub  r4, r5, r6
+--        2 =>  "000101000100000111", -- addi r2, r1, #7
+--        3 =>  "001001001100001111", -- andi r3, r2, #15
+--        4 =>  "001101000100001000", -- lw   r4, r1, #8
+--        5 =>  "010001000100001000", -- sw   r4, r1, #8
+--        6 =>  "010101001100000011", -- beq  r2, r3, #3
+--        7 =>  "011000000011111111", -- j    0x3F
+--        8 =>  "011101001000000101", -- lea  r1, r2, #5
+--        9 =>  "100001001100000000", -- mvz  r1, r2, r3
+--        10 => "100101001100000100",-- pcm  r3, #4(r2)
         others => (others => '0')
     );
 begin
