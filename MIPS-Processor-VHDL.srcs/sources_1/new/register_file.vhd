@@ -44,7 +44,13 @@ end register_file;
 
 architecture rtl of register_file is
     type memory_array is array(0 to 7) of std_logic_vector(31 downto 0);
-    signal registers : memory_array := (others => (others => '0'));
+    signal registers : memory_array := (
+    1 => X"00000005", -- r1 = 5
+    2 => X"0000000A", -- r2 = 10
+    4 => X"00000014", -- r4 = 20
+    5 => X"00000005", -- r5 = 5
+    others => (others => '0')
+);
 begin
 
     -- Read port 1

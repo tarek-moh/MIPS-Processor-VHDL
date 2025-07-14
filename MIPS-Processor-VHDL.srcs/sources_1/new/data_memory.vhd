@@ -44,7 +44,10 @@ end data_memory;
 
 architecture rtl of data_memory is
     type memory_array is array(0 to 63) of std_logic_vector(31 downto 0);
-    signal memory : memory_array := (others => (others => '0'));
+    signal memory : memory_array  := (
+    13 => X"00000063", -- mem[13] = 99 (for lw test)
+    others => (others => '0')
+);
 begin
     -- Combinational Read
     process(read_address, MEMREAD, memory)
