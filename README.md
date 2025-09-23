@@ -1,4 +1,4 @@
-# 🧠 Single-Cycle MIPS Processor (VHDL Implementation)
+# Single-Cycle MIPS Processor (VHDL Implementation)
 
 This project implements a simplified **single-cycle MIPS processor** in **VHDL** that supports a selected subset of MIPS instructions along with **three custom instructions**: `lea`, `mvz`, and `pcm`.
 
@@ -12,7 +12,7 @@ The processor is follows a single-cycle execution model, where each instruction 
 | J-type  | `op`   | —      |                    `address (12-bits)`        |
 | R-type  | `op`   | `rs`   | `rt`   | `rd`         |  —           | `func` |
 
-## ✅ Supported Instruction Set
+## Supported Instruction Set
 
 ### 🔹 Arithmetic & Logic Instructions
 | Instruction | Operation                          |
@@ -25,13 +25,13 @@ The processor is follows a single-cycle execution model, where each instruction 
 | `andi`      | `R[rt] = R[rs] & Imm`              |
 | `slt`       | `R[rd] = (R[rs] < R[rt]) ? 1 : 0`   |
 
-### 🔹 Memory Instructions
+### Memory Instructions
 | Instruction | Operation                           |
 |-------------|--------------------------------------|
 | `lw`        | `R[rt] = Memory[R[rs] + offset]`    |
 | `sw`        | `Memory[R[rs] + offset] = R[rt]`    |
 
-### 🔹 Control Flow Instructions
+### Control Flow Instructions
 | Instruction | Operation                          |
 |-------------|-------------------------------------|
 | `beq`       | `if (R[rs] == R[rt]) PC += offset` |
@@ -39,7 +39,7 @@ The processor is follows a single-cycle execution model, where each instruction 
 
 ---
 
-## 🧪 Custom Instruction Set
+## Custom Instruction Set
 
 ### 🔸 `lea rs, rt, K`
 ```mips
