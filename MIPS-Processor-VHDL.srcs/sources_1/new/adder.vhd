@@ -11,6 +11,7 @@ end adder;
 architecture rtl of adder is
 signal sum_full: signed(6 downto 0);
 begin
+    -- resize to avoid overflow errors and simulate real circuit logic
     sum_full <= resize(x, 7) + resize(y, 7);  -- Resize both to 7 bits
     z <= sum_full(5 downto 0);               -- Truncate to 6 bits
 end rtl;

@@ -21,7 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+use work.cpu_definitions_pkg.all;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
@@ -32,16 +32,21 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity CPU is
-    Port ( clk : in STD_LOGIC);
+    Port ( clk : in STD_LOGIC;
+            debug_regs : out T_REGISTER_ARRAY;
+            debug_memory : out T_DATA_MEMORY_ARRAY;
+            rst : in STD_LOGIC
+    );
 end CPU;
 
 architecture rtl of CPU is
 
 --== FETCH SIGNALS ==--
-    signal current_address, new_address, pc_plus_1 : std_logic_vector(5 downto 0) := "000000";
+    -- The choice of a 6-bit address is based on the arbitrary choice of the instruction memory size.
+    -- I chose an instruction memory of size 64 x 19, as I see that it's enough for educational purposes.
+    signal current_address, next_address : std_logic_vector(5 downto 0) := "000000";
+    signal pc_plus_1 : std_logic_vector(5 downto 0) := "000001";
     signal instruction : std_logic_vector(18 downto 0);
-    signal z_internal : signed(5 downto 0);
-    
 --== DECODE SIGNALS ==--
      
      signal ALUOP : STD_LOGIC_VECTOR(2 downto 0) := "000";
@@ -70,18 +75,22 @@ architecture rtl of CPU is
 --== MEMORY SIGNALS ==--
      signal extended_pc_plus_1, memory_read_address, memory_write_data, memory_dout : STD_LOGIC_VECTOR(31 downto 0);
 begin
-
+    rs <= instruction(14 downto 12);
+    rt <= instruction(11 downto 9);
+    rd <= instruction(8 downto 6);
+    imm <= instruction(8 downto 0);
+    jump_address <= instruction(11 downto 0);
 --=== FETCH STAGE ===--
     PCReg: entity work.pc(rtl)
-     port map(clk => clk, current_address => current_address, new_address => new_address);
+     port map(rst => rst, clk => clk, current_address => current_address, new_address => next_address);
     
     InstrMem: entity work.instruction_memory(rtl)
      port map(input_address => current_address, instruction => instruction);
      
-    adder : entity work.adder(rtl)
-    port map( x => "000001", y => signed(current_address), z => z_internal);
-    pc_plus_1 <= std_logic_vector(z_internal);
-
+     -- this correctly handles overflow using wrapping around logic
+     pc_plus_1 <= std_logic_vector(unsigned(current_address) + 1);
+     extended_pc_plus_1 <= std_logic_vector(resize(unsigned(pc_plus_1), 32));
+     
     --=== DECODE STAGE ===--
     ControlUnitInst: entity work.control_unit(rtl)
      port map(
@@ -97,7 +106,8 @@ begin
         JUMP => JUMP,
         LEA => LEA,
         MVZ => MVZ,
-        PCM => PCM
+        PCM => PCM,
+        ALUOP => ALUOP
     );
     
     write_addr_mux : entity work.mux(rtl)
@@ -128,6 +138,7 @@ begin
         R_rs => R_rs,
         R_rt => R_rt,
         WRITE => mux_reg_write,
+        debug_regs => debug_regs,
         clk => clk
     );
     
@@ -209,28 +220,6 @@ begin
     );
     
     
-    pc_mux_2 : entity work.mux(rtl)
-    generic map(
-    N => 6
-    )
-    port map(
-    data_a  => pc_1_to_2,
-    data_b  => memory_dout(5 downto 0),
-    sel     => PCM,
-    mux_out => pc_2_to_3
-    );
-    
-    pc_mux_3 : entity work.mux(rtl)
-    generic map(
-    N => 6
-    )
-    port map(
-    data_a  => pc_2_to_3,
-    data_b  => instruction(5 downto 0),
-    sel     => JUMP,
-    mux_out => new_address
-    );
-    
     --=== MEMORY STAGE ===--
     read_addr_mux : entity work.mux(rtl)
     generic map(
@@ -263,6 +252,7 @@ begin
             write_data    => memory_write_data,
             MEMREAD       => MEMREAD,
             MEMWRITE      => MEMWRITE,
+            debug_mem     => debug_memory,
             data          => memory_dout
         );
     --=== WRITEBACK STAGE ===--
@@ -271,8 +261,8 @@ begin
     N => 32
     )
     port map(
-    data_a => memory_dout,
-    data_b => alu_result,
+    data_a => alu_result,
+    data_b => memory_dout,
     sel => MEMTOREG,
     mux_out => write_back_data
     );
@@ -282,10 +272,33 @@ begin
     N => 32
     )
     port map(
-    data_a => R_rs,
-    data_b => write_back_data,
+    data_a => write_back_data,
+    data_b => R_rs,
     sel => MVZ,
     mux_out => reg_write_data
     );
+    
+    pc_mux_2 : entity work.mux(rtl)
+    generic map(
+    N => 6
+    )
+    port map(
+    data_a  => pc_1_to_2,
+    data_b  => memory_dout(5 downto 0),
+    sel     => PCM,
+    mux_out => pc_2_to_3
+    );
+    
+    pc_mux_3 : entity work.mux(rtl)
+    generic map(
+    N => 6
+    )
+    port map(
+    data_a  => pc_2_to_3,
+    data_b  => instruction(5 downto 0),
+    sel     => JUMP,
+    mux_out => next_address
+    );
+    
 
 end rtl;

@@ -1,0 +1,26 @@
+0.7
+2020.2
+Nov  8 2024
+22:36:57
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/ALU_tb.vhd,1752181539,vhdl,,,,alu_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/CPU_tb.vhd,1758646391,vhdl2008,,,,cpu_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/adder_tb.vhd,1751920373,vhdl,,,,adder_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/data_memory_tb.vhd,1752343147,vhdl,,,,data_memory_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/extender_tb.vhd,1751914401,vhdl,,,,extender_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/instruction_memory_tb.vhd,1752345034,vhdl,,,,instruction_memory_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/multiplier_tb.vhd,1751916620,vhdl,,,,multiplier_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/mux_tb.vhd,1751913137,vhdl,,,,mux_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/register_file_tb.vhd,1752342139,vhdl,,,,register_file_tb,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/ALU.vhd,1752181539,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,alu,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,1758646210,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/CPU_tb.vhd,,,cpu,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/PC.vhd,1758475983,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,pc,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/adder.vhd,1751921354,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/adder_tb.vhd,,,adder,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/control_unit.vhd,1752345629,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,control_unit,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/cpu_types.vhd,1758467635,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sim_1/new/CPU_tb.vhd;C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd;C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/data_memory.vhd;C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/register_file.vhd,,,cpu_definitions_pkg,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/data_memory.vhd,1758645283,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,data_memory,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/extender.vhd,1752181539,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,extender,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/instruction_memory.vhd,1758645707,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,instruction_memory,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/multiplier.vhd,1752181539,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,multiplier,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/mux.vhd,1752426075,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd;C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/mux_1bit.vhd,,,mux,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/mux_1bit.vhd,1752426857,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,mux_1bit,,,,,,,,
+C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/register_file.vhd,1758645076,vhdl,C:/Users/tarek/MIPS-Processor-VHDL/MIPS-Processor-VHDL.srcs/sources_1/new/CPU.vhd,,,register_file,,,,,,,,

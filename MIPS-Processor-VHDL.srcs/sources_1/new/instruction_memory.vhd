@@ -44,18 +44,18 @@ architecture rtl of instruction_memory is
     
     -- Hardcoded memory contents
     constant ROM : memory_array := (
-        0 =>  "0000001010011000000",     -- add  r1, r2, r3 ; r1 = 5, r2 = 10 → r3 = 15
-        1 =>  "0000100101110000001",     -- SUB  r6 ← r4 - r5      ; r4 = 20, r5 = 5 → r6 = 15
-        2 =>  "0001001010000000111",     -- ADDI r2 ← r1 + 7       ; r1 = 5 → r2 = 12
-        3 =>  "0010011010000001111",     -- ANDI r3 ← r2 & 0xF     ; r2 = 12 → r3 = 12
-        4 =>  "0011001100000001000",     -- LW   r4 ← Mem[r1 + 8]  ; r1 = 5, mem[13] = 99 → r4 = 99
-        5  => "0100001100000001000",     -- SW   Mem[r1 + 8] ← r4  ; store r4 into mem[13]
-        6 =>  "0101010011000001000",     -- BEQ  if r2 == r3 → PC+3
+        0 =>  "0000010011001000000",     -- ADD r2, r3, r1 ; (r1 = 5 + r2 = 10) => r1 = 15
+        1 =>  "0000100101110000001",     -- SUB  r4, r5, r6 ; (r4 = 20, r5 = 5) => r6 = 15
+        2 =>  "0100001010000000111",     -- ADDI r1, r2, 7  ; r1 = 15 => r2 = 22
+        3 =>  "0101010011000001111",     -- ANDI r2, r3, 0xF     ; r2 = 12 -> r3 = 12
+        4 =>  "0110101100000001000",     -- LW   r5, r4, 8   ; r5 = 5, mem[13] = 99 -> r4 = 99
+        5  => "1000001100000001000",     -- SW   Mem[r1 + 8] := r4  ; store r4 into mem[13]
+        6 =>  "0101010011000001000",     -- BEQ  if r2 == r3 ; PC+3
         7 =>  "0000000000000000000",     -- nop for test
-        8 =>  "0111001010000000101",     -- LEA  r2 ← r1 + r2 * 5  ; r1=5, r2=2 → r2=15
-        9 =>  "1000001010011000000",         -- MVZ  r3 ← r1 if r2==0  ; r2=0, r3 = r1
-        10 =>  "1001011010000000100",    -- PCM  r3 ← Mem[r2 + 4]  ; test PCM read/write
-        11 => "0110000000000001011",            -- JUMP to address 11      ; force jump
+        8 =>  "0111001101010000101",     -- LEA  r2 := r5 + r2 * 5  ; r5=5, r2=2 → r2=15
+        9 =>  "0000001010011000101",     -- MVZ  r3 := r1 if r2==0  ; r2=0, r3 = r1
+        10 => "1001011001000000100",    -- PCM  r3, r7, 4  ; r7 = 10, r3 = 0 [pc should become 11 & mem[4] should become 12] test PCM read/write
+        11 => "1111000000000001011",     -- JUMP to address 11      ; force jump should undergo an infinite loop
         others => (others => '0')
     );
 begin

@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use work.cpu_definitions_pkg.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -38,17 +39,19 @@ entity data_memory is
         write_data : in std_logic_vector(31 downto 0);
         MEMREAD : in std_logic;
         MEMWRITE : in std_logic;
+        debug_mem : out T_DATA_MEMORY_ARRAY;
         data : out std_logic_vector(31 downto 0)
   );
 end data_memory;
 
 architecture rtl of data_memory is
-    type memory_array is array(0 to 63) of std_logic_vector(31 downto 0);
-    signal memory : memory_array  := (
+    signal memory : T_DATA_MEMORY_ARRAY  := (
     13 => X"00000063", -- mem[13] = 99 (for lw test)
+    15 =>  X"0000000b", -- mem[1] = 11 for PCM testing
     others => (others => '0')
 );
 begin
+    debug_mem <= memory;
     -- Combinational Read
     process(read_address, MEMREAD, memory)
     begin

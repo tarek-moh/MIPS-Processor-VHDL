@@ -32,7 +32,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity PC is
-    Port ( new_address : in STD_LOGIC_VECTOR (5 downto 0);
+    Port ( rst : in STD_LOGIC;
+           new_address : in STD_LOGIC_VECTOR (5 downto 0);
            current_address : out STD_LOGIC_VECTOR (5 downto 0);
            clk : in STD_LOGIC);
 end PC;
@@ -41,11 +42,14 @@ architecture rtl of PC is
 
 begin
 
-process(clk)
+process(clk, rst)
 begin
-
-     current_address <= new_address;
-
+    if rst = '1' then
+        current_address <= (others => '0');
+    elsif rising_edge(clk) then
+        current_address <= new_address;
+    end if;
 end process;
+
 
 end rtl;
